@@ -1,5 +1,5 @@
 {
-  "name": "figma-pluin-bulk-variables-generator",
+  "name": "@hirnspin/figma-plugin-bulk-variables-generator",
   "version": "1.0.0",
   "description": "Figma Plugin Bulk Variables Generator",
   "main": "dist/code.js",
@@ -9,8 +9,12 @@
     "dev": "webpack --mode=development --watch",
     "build": "webpack --mode=production"
   },
-  "author": "",
-  "license": "",
+  "author": "Sebastian Hösl",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hirnspin/figma-plugin-bulk-variables-generator.git"
+  },
+  "license": "MIT",
   "devDependencies": {
     "@figma/plugin-typings": "*",
     "figma-plugin-ds": "^1.0.1",
