@@ -1,0 +1,133 @@
+html {
+    overflow: hidden;
+}
+
+body {
+    font-size: 16px;
+    color: var(--figma-color-text);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+#react-page,
+main {
+    height: 100%;
+}
+
+small {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    border: solid 1px var(--figma-color-border);
+    padding: 0.5rem;
+    margin: 0.5rem;
+}
+
+.bottom-bar {
+    display: flex;
+    gap: 1rem;
+    position: sticky;
+    width: 100%;
+    background: var(--figma-color-bg);
+    bottom: 0;
+    padding: 1rem;
+    justify-content: end;
+    left: 0;
+    right: 0;
+    border-top: 1px solid var(--figma-color-border);
+}
+
+.form {
+    display: flex;
+    margin: 1rem;
+    flex-direction: column;
+    padding-bottom: .5rem;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.gap-050 {
+    gap: .5rem;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+code {
+    color: var(--figma-color-text-success);
+}
+
+.preview-container {
+    max-width: 16rem;
+    width: 16rem;
+    color: var(--figma-color-text);
+    overflow-y: auto;
+    height: calc(100% - 4rem);
+    background-color: var(--figma-color-bg-secondary);
+}
+
+.preview-container>table {
+    font-size: .6875rem;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.preview-container>table .number-symbol {
+    height: 1rem;
+    width: 1rem;
+    color: var(--figma-color-text);
+}
+
+.preview-container>table :is(td, th) {
+    border-bottom: solid 1px var(--figma-color-border);
+    border-left: solid 1px var(--figma-color-border);
+    padding: .75rem;
+    text-align: left;
+}
+
+.preview-container>table>thead>tr th {
+    font-weight: bold;
+    border-top: none;
+}
+
+.preview-container>table>thead>tr:first-of-type th {
+    font-weight: 300;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: var(--figma-color-bg-warning);
+    color: var(--figma-color-text-onwarning);
+}
+
+.preview-container>table>thead>tr:first-of-type th {
+    border: 0;
+}
+
+.preview-container>table>thead>tr th {
+    border-top: 0;
+}
+
+.preview-container>table>thead {
+    position: sticky;
+    top: 0;
+    background-color: var(--figma-color-bg-secondary);
+}
+
+svg[aria-hidden=true] {
+    display: none;
+}
+
+#leadingZerosCount {
+    width: 2.5rem;
+}

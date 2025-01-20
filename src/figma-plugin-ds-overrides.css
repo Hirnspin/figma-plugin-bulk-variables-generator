@@ -1,0 +1,159 @@
+.button--secondary,
+.button--secondary-destructive {
+    background-color: var(--figma-color-bg-inverse);
+    color: var(--figma-color-text);
+}
+
+.button--secondary-destructive:disabled {
+    background-color: var(--figma-color-bg-inverse);
+}
+
+.button--secondary-destructive:disabled {
+    background-color: var(--figma-color-bg-inverse);
+}
+
+.checkbox__label,
+.checkbox__box:disabled+.checkbox__label {
+    color: var(--figma-color-text);
+}
+
+.checkbox__label:before {
+    border: 1px solid var(--figma-color-border-strong);
+    min-width: 10px;
+}
+
+.checkbox__box:checked:disabled+.checkbox__label:before {
+    background-color: var(--figma-color-text);
+}
+
+.disclosure__label {
+    color: var(--figma-color-text);
+}
+
+.disclosure__content {
+    color: var(--figma-color-text);
+}
+
+.input__field,
+.input__field:active,
+.input__field:focus {
+    color: var(--figma-color-text-secondary);
+    background-color: var(--figma-color-bg-secondary);
+}
+
+.input__field::placeholder {
+    color: var(--figma-color-text-disabled);
+}
+
+.input__field:hover,
+.input__field:placeholder-shown:hover {
+    color: var(--figma-color-text-secondary);
+}
+
+.input__field::-moz-selection {
+    color: var(--figma-color-text-secondary);
+}
+
+.input__field::selection {
+    color: var(--figma-color-text-secondary);
+}
+
+.input {
+    padding: 0 0.5rem;
+}
+
+.label {
+    color: var(--figma-color-text);
+}
+
+.onboarding-tip {
+    background: var(--figma-color-bg-danger);
+    margin: 0.25rem 0 0.75rem 0;
+    border-radius: 0.125rem;
+}
+
+.onboarding-tip__msg {
+    color: var(--figma-color-text);
+    line-height: 1rem;
+}
+
+.radio__label {
+    color: var(--figma-color-text);
+}
+
+.radio__label:before {
+    border: 1px solid var(--figma-color-border-strong);
+    min-width: 10px;
+    margin: 0 10px 0 -8px;
+}
+
+.radio__label:checked:disabled+.radio__label:before {
+    background-color: var(--figma-color-text);
+}
+
+.radio__button:checked+.radio__label:before {
+    color: var(--figma-color-text);
+    background: none;
+    content: '●';
+    display: flex;
+    align-items: center;
+    font-size: 6px;
+    justify-content: center;
+}
+
+.section-title {
+    color: var(--figma-color-text);
+}
+
+.select-menu__button {
+    background-color: var(--figma-color-bg-inverse);
+}
+
+.select-menu__button:hover .select-menu__label--placeholder {
+    color: var(--figma-color-text);
+}
+
+.select-menu__button:focus .select-menu__label--placeholder {
+    color: var(--figma-color-text);
+}
+
+.select-menu__label {
+    color: var(--figma-color-text);
+}
+
+.switch__toggle:checked+.switch__label:before {
+    color: var(--figma-color-text);
+    background-color: var(--figma-color-bg-selected-strong);
+}
+
+.switch__label {
+    color: var(--figma-color-text);
+    align-items: center;
+}
+
+.switch__label:before {
+    background-color: var(--figma-color-bg-disabled);
+}
+
+.switch__label:after {
+    background-color: var(--figma-color-icon-onbrand);
+}
+
+.textarea {
+    color: var(--figma-color-text);
+    background-color: var(--figma-color-bg-inverse);
+}
+
+.textarea::placeholder {
+    color: var(--figma-color-text-disabled);
+}
+
+.textarea:hover,
+.textarea:placeholder-shown:hover {
+    color: var(--figma-color-text);
+}
+
+:invalid,
+:invalid:is(:hover, :active, :focus) {
+    border-color: var(--figma-color-bg-danger);
+}
