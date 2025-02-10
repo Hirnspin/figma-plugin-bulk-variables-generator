@@ -9,9 +9,5 @@
     "figma"
   ],
   "ui": "dist/ui.html",
-  "networkAccess": {
-    "allowedDomains": [
-      "https://rsms.me"
-    ]
-  }
+  "documentAccess": "dynamic-page"
 }
