@@ -17,25 +17,26 @@ function getDetachedAliasVariables(
 ): Array<DetachedAliasVariableResult> {
   const result: DetachedAliasVariableResult[] = [];
 
-  variables.forEach((variable) => {
-    const collection = figma.variables.getVariableCollectionById(
+  variables.forEach(async (variable) => {
+    const collection = await figma.variables.getVariableCollectionByIdAsync(
       variable.variableCollectionId
     );
 
-    collection?.modes.forEach((mode) => {
+    collection?.modes.forEach(async (mode) => {
       const value: VariableValue = variable.valuesByMode[mode.modeId];
 
       if ((value as VariableAlias).type === "VARIABLE_ALIAS") {
-        const sourceVariable = figma.variables.getVariableById(
+        const sourceVariable = await figma.variables.getVariableByIdAsync(
           (value as VariableAlias).id
         );
 
         const sourceVariableCollectionId = sourceVariable?.variableCollectionId;
 
         if (sourceVariableCollectionId) {
-          const sourceCollection = figma.variables.getVariableCollectionById(
-            sourceVariable?.variableCollectionId
-          );
+          const sourceCollection =
+            await figma.variables.getVariableCollectionByIdAsync(
+              sourceVariable?.variableCollectionId
+            );
 
           if (
             !sourceCollection ||
@@ -53,22 +54,25 @@ function getDetachedAliasVariables(
   return result;
 }
 
-function process(_settings: ISettings) {
+async function process(_settings: ISettings) {
   let collection = _settings.createNewCollection
     ? figma.variables.createVariableCollection(_settings.collectionName)
-    : figma.variables.getVariableCollectionById(
+    : await figma.variables.getVariableCollectionByIdAsync(
         _settings.selectedCollectionId!
       );
   if (collection) {
     let variables: Variable[] = [];
     let detachedAliasVariables: DetachedAliasVariableResult[] = [];
 
-    variables = figma.variables.getLocalVariables("FLOAT");
+    variables = await figma.variables.getLocalVariablesAsync("FLOAT");
     detachedAliasVariables = getDetachedAliasVariables(variables);
-    console.log(
-      "Detached alias variables found:",
-      detachedAliasVariables.map((x) => x.variable.name).join(", ")
-    );
+
+    if (detachedAliasVariables.length > 0) {
+      console.log(
+        "Detached alias variables found:",
+        detachedAliasVariables.map((x) => x.variable.name).join(", ")
+      );
+    }
 
     for (
       let index = _settings.start,
@@ -100,18 +104,17 @@ function process(_settings: ISettings) {
       }
 
       if (createVariable) {
-        const _var = figma.variables.createVariable(
-          name,
-          collection.id,
-          "FLOAT"
-        );
+        const _var = figma.variables.createVariable(name, collection, "FLOAT");
 
         console.info(`Variable "${name}" created successfully!`);
         _var.setValueForMode(collection.defaultModeId, index);
         //_var.scopes = _settings.scopes;
         _var.hiddenFromPublishing = _settings.hiddenFromPublishing;
 
-        if (_settings.updatedDetachedAliases) {
+        if (
+          _settings.updatedDetachedAliases &&
+          detachedAliasVariables.length > 0
+        ) {
           detachedAliasVariables
             .filter(
               (x) =>
@@ -131,19 +134,22 @@ function process(_settings: ISettings) {
       }
     }
   } else {
-    console.error(`Error while processing. Either the collection with the id "${_settings.selectedCollectionId}" was not found, or the collection with the name "${_settings.collectionName}" could not be created!`);
+    console.error(
+      `Error while processing. Either the collection with the id "${_settings.selectedCollectionId}" was not found, or the collection with the name "${_settings.collectionName}" could not be created!`
+    );
   }
 }
 
-figma.ui.onmessage = (msg) => {
+figma.ui.onmessage = async (msg) => {
   switch (msg.type) {
     case "run":
-      process(msg.settings);
+      await process(msg.settings);
       figma.closePlugin();
       break;
     case "init":
-      const collections = figma.variables
-        .getLocalVariableCollections()
+      const collections = (
+        await figma.variables.getLocalVariableCollectionsAsync()
+      )
         .map((c) => {
           return { id: c.id, name: c.name };
         })
